@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Bestie 💙</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050811;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.browser{
+    width:100%;
+    max-width:600px;
+    height:100vh;
+    background:#0b1020;
+    overflow:hidden;
+    position:relative;
+}
+
+.browser-top{
+    height:55px;
+    background:#161a24;
+    display:flex;
+    align-items:center;
+    padding:0 15px;
+    gap:7px;
+    border-bottom:1px solid #303746;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#777;
+}
+
+.address{
+    flex:1;
+    margin-left:12px;
+    height:28px;
+    border-radius:20px;
+    background:#252b38;
+    color:#9ca4b5;
+    text-align:center;
+    padding:6px;
+    font-size:13px;
+}
+
+.page{
+    display:none;
+    height:calc(100vh - 55px);
+    overflow-y:auto;
+    position:relative;
+    padding:35px 20px;
+    text-align:center;
+    background:
+        radial-gradient(circle at 20% 20%,#182641 0%,transparent 25%),
+        radial-gradient(circle at 80% 80%,#142038 0%,transparent 25%),
+        #090e1a;
+}
+
+.page.active{
+    display:block;
+}
+
+.star{
+    position:absolute;
+    font-size:25px;
+    animation:float 3s ease-in-out infinite;
+    opacity:.9;
+}
+
+.s1{top:30px;left:25px}
+.s2{top:90px;right:28px}
+.s3{bottom:100px;left:30px}
+.s4{bottom:45px;right:30px}
+
+@keyframes float{
+    50%{
+        transform:translateY(-12px) rotate(8deg);
+    }
+}
+
+h1{
+    color:#d6b35a;
+    font-size:32px;
+    margin:25px 0;
+}
+
+h2{
+    color:#dce7ff;
+    margin:18px 0;
+}
+
+p{
+    color:#c5ccda;
+    line-height:1.7;
+}
+
+.photo{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    margin:25px auto;
+    overflow:hidden;
+    border:5px solid #d6b35a;
+    background:#172238;
+    box-shadow:
+        0 0 0 5px #101827,
+        0 10px 30px rgba(0,0,0,.6);
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* SECRET CODE */
+
+.code-boxes{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    margin:20px 0;
+    flex-wrap:wrap;
+}
+
+.code-box{
+    width:40px;
+    height:45px;
+    border:2px solid #d6b35a;
+    border-radius:8px;
+    background:#111827;
+    color:#fff;
+    text-align:center;
+    font-size:22px;
+}
+
+.keypad{
+    display:grid;
+    grid-template-columns:repeat(3,60px);
+    justify-content:center;
+    gap:10px;
+    margin-top:15px;
+}
+
+.key{
+    width:60px;
+    height:50px;
+    border:1px solid #39465e;
+    border-radius:10px;
+    background:#182238;
+    color:#e8edf7;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.key:active{
+    transform:scale(.90);
+    background:#253451;
+}
+
+.small{
+    font-size:13px;
+    color:#78849a;
+    margin-top:18px;
+}
+
+/* BUTTONS */
+
+.main-btn{
+    border:1px solid #d6b35a;
+    background:#162238;
+    color:#d6b35a;
+    padding:13px 35px;
+    border-radius:8px;
+    font-size:18px;
+    font-weight:bold;
+    margin:8px;
+    box-shadow:0 4px 0 #080c14;
+}
+
+.main-btn:active{
+    transform:translateY(3px);
+    box-shadow:none;
+}
+
+.big{
+    font-size:50px;
+    letter-spacing:3px;
+}
+
+.icons{
+    font-size:25px;
+    margin:15px;
+    letter-spacing:8px;
+}
+
+.no-message{
+    color:#d6b35a;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+/* LETTER */
+
+.letter-header{
+    margin-top:5px;
+}
+
+.letter-header .emoji{
+    font-size:42px;
+}
+
+.letter-header h1{
+    color:#d6b35a;
+    font-size:30px;
+    margin:8px 0 20px;
+}
+
+.letter{
+    background:#111827;
+    border:1px solid #35425b;
+    border-radius:16px;
+    padding:25px;
+    text-align:left;
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+.letter h2{
+    color:#d6b35a;
+    text-align:center;
+    font-size:22px;
+    margin-bottom:22px;
+}
+
+.letter p{
+    color:#d7dce6;
+    line-height:1.8;
+    margin-bottom:18px;
+}
+
+.signature{
+    color:#d6b35a;
+    text-align:right;
+    font-weight:bold;
+    font-size:17px;
+    margin-top:25px;
+}
+
+.back-btn{
+    border:1px solid #d6b35a;
+    background:#0d1422;
+    color:#d6b35a;
+    padding:12px 25px;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:bold;
+    margin:25px auto;
+}
+
+.back-btn:active{
+    transform:scale(.95);
+}
+
+@media(max-width:400px){
+
+    h1{
+        font-size:27px;
+    }
+
+    .photo{
+        width:175px;
+        height:175px;
+    }
+
+    .letter{
+        padding:20px;
+    }
+
+    .letter p{
+        font-size:14px;
+    }
+
+    .code-box{
+        width:38px;
+        height:43px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="browser">
+
+<!-- TOP BAR -->
+<div class="browser-top">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+
+    <div class="address">
+        birthday-bestie.com 💙
+    </div>
+</div>
+
+
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+
+    <span class="star s1">⚡</span>
+    <span class="star s2">💙</span>
+    <span class="star s3">★</span>
+    <span class="star s4">⚡</span>
+
+    <h1>A LITTLE SURPRISE</h1>
+
+    <p>
+        For my one and only boy best friend 😎
+    </p>
+
+    <div class="photo">
+        <img src="friend.jpg" alt="Best Friend">
+    </div>
+
+    <h2>ENTER THE SECRET CODE 🔐</h2>
+
+    <!-- 6 DIGIT CODE -->
+    <div class="code-boxes">
+
+        <input class="code-box" id="box1" readonly>
+        <input class="code-box" id="box2" readonly>
+        <input class="code-box" id="box3" readonly>
+        <input class="code-box" id="box4" readonly>
+        <input class="code-box" id="box5" readonly>
+        <input class="code-box" id="box6" readonly>
+
+    </div>
+
+    <!-- KEYPAD -->
+    <div class="keypad">
+
+        <button class="key" onclick="number(1)">1</button>
+        <button class="key" onclick="number(2)">2</button>
+        <button class="key" onclick="number(3)">3</button>
+
+        <button class="key" onclick="number(4)">4</button>
+        <button class="key" onclick="number(5)">5</button>
+        <button class="key" onclick="number(6)">6</button>
+
+        <button class="key" onclick="number(7)">7</button>
+        <button class="key" onclick="number(8)">8</button>
+        <button class="key" onclick="number(9)">9</button>
+
+        <button class="key" onclick="clearCode()">✕</button>
+        <button class="key" onclick="number(0)">0</button>
+        <button class="key" onclick="checkCode()">✓</button>
+
+    </div>
+
+    <p class="small">
+        Hint: Your special date 😉
+    </p>
+
+</section>
+
+
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+
+    <span class="star s1">⚡</span>
+    <span class="star s2">💙</span>
+
+    <h1>Hi, BESH! 😎</h1>
+
+    <div class="photo">
+        <img src="friend.jpg" alt="Best Friend">
+    </div>
+
+    <h2>
+        I made something special for you.
+        <br><br>
+        Do you wanna see it? 👀
+    </h2>
+
+    <button class="main-btn" onclick="showPage(3)">
+        YES 💙
+    </button>
+
+    <button class="main-btn" onclick="noButton()">
+        NO 😒
+    </button>
+
+    <p class="no-message" id="noMessage"></p>
+
+</section>
+
+
+<!-- PAGE 3 -->
+<section class="page" id="page3">
+
+    <span class="star s1">★</span>
+    <span class="star s2">⚡</span>
+
+    <div class="icons">
+        ⚡😎⚡
+    </div>
+
+    <div class="photo">
+        <img src="friend.jpg" alt="Best Friend">
+    </div>
+
+    <h1>
+        GOOD CHOICE, BEST! 😎
+    </h1>
+
+    <p>
+        You passed the test. 😂
+    </p>
+
+    <p>
+        Now here's your birthday surprise!
+    </p>
+
+    <br>
+
+    <button class="main-btn" onclick="showPage(4)">
+        CLICK HERE ✨
+    </button>
+
+</section>
+
+
+<!-- PAGE 4 -->
+<section class="page" id="page4">
+
+    <span class="star s1">🎈</span>
+    <span class="star s2">⚡</span>
+    <span class="star s3">★</span>
+
+    <div class="icons">
+        🎉 🎂 🎉
+    </div>
+
+    <h1 class="big">
+        HAPPY
+    </h1>
+
+    <div class="photo">
+        <img src="friend.jpg" alt="Birthday Boy">
+    </div>
+
+    <h1 class="big">
+        BIRTHDAY!
+    </h1>
+
+    <h2>
+        Love! 💙
+    </h2>
+
+    <p>
+        Today is your day. Enjoy it! 😎
+    </p>
+
+    <br>
+
+    <button class="main-btn" onclick="showPage(5)">
+        BASSAHA LETTER KO BRUHAA 💌
+    </button>
+
+</section>
+
+
+<!-- PAGE 5 -->
+<section class="page" id="page5">
+
+    <span class="star s1">⚡</span>
+    <span class="star s2">💙</span>
+
+    <div class="letter-header">
+
+        <div class="emoji">
+            💌
+        </div>
+
+        <h1>
+            A Letter For You
+        </h1>
+
+    </div>
+
+    <div class="photo">
+        <img src="friend.jpg" alt="Best Friend">
+    </div>
+
+    <div class="letter">
+
+        <h2>
+            Happy Birthday, Best! 💙
+        </h2>
+
+        <p>
+            <b>
+                Happy Birthday to my one and only boybestfriend heh boyfriend pala, na pogii! 🥳💙
+            </b>
+        </p>
+
+        <p>
+            Thank you for being one of the people I can always count on,
+            sa good days man or bad days. Thank you sa mga tawanan,
+            kwentuhan, kalokohan, at sa mga moments na hindi natin
+            makakalimutan. 😂
+        </p>
+
+        <p>
+            I’m really grateful na dumating ka sa buhay ko as a friend chrss lang po as boyfie pala.
+            Hindi man ako palaging expressive chrs, pero I hope you know how
+            much I appreciate you and our friendship este. You deserve all the
+            good things life has to offer.
+        </p>
+
+        <p>
+            Sana sab maglugay pa in pagbagay ta  karuwaa heh kalaung adja ako,okay wayruun
+            magbago maskin aun kakilahan bago alangan dapat ako lang check na labyouu.
+        </p>
+
+        <p>
+            On your special day, I wish you genuine happiness, good health,
+            success in everything you do, and may all your dreams slowly
+            become reality. Never forget that you have a friend este girlfriend pala who will
+            always be cheering for you. 🤍
+        </p>
+
+        <p>
+            Enjoy your day, bestie heh love tuwih! Stay strong, stay humble, and please
+            don't change the good person that you are. Happy birthday ulit!
+            🎂🎉💙
+        </p>
+
+        <div class="signature">
+            — Your Bestie ,
+          Your love cute pala💙
+        </div>
+
+    </div>
+
+    <div class="icons">
+        ⚡ 💙 ⚡
+    </div>
+
+    <button class="back-btn" onclick="showPage(1)">
+        BACK TO START 🔄
+    </button>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* SECRET CODE */
+let secretCode = "020402";
+let enteredCode = "";
+
+
+/* NUMBER BUTTON */
+function number(num){
+
+    if(enteredCode.length < 6){
+
+        enteredCode += num;
+
+        document.getElementById(
+            "box" + enteredCode.length
+        ).value = "●";
+
+    }
+}
+
+
+/* CLEAR BUTTON */
+function clearCode(){
+
+    enteredCode = "";
+
+    for(let i = 1; i <= 6; i++){
+
+        document.getElementById(
+            "box" + i
+        ).value = "";
+
+    }
+}
+
+
+/* CHECK CODE */
+function checkCode(){
+
+    if(enteredCode === secretCode){
+
+        showPage(2);
+
+    }else{
+
+        alert("Wrong code 😭 Try again!");
+
+        clearCode();
+
+    }
+}
+
+
+/* CHANGE PAGE */
+function showPage(pageNumber){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(function(page){
+
+            page.classList.remove("active");
+
+        });
+
+    document
+        .getElementById("page" + pageNumber)
+        .classList.add("active");
+}
+
+
+/* NO BUTTON */
+function noButton(){
+
+    document.getElementById("noMessage").innerHTML =
+        "Awww bro 😭 You have to click YES! 😂💙";
+
+}
+
+</script>
+
+</body>
+</html>
